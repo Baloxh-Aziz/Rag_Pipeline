@@ -73,7 +73,3 @@ if st.button("Ask Question"):
             result = qa_chain.invoke({"query": question})
             st.subheader("Answer")
             st.write(result["result"])
-
-            with st.expander("Sources"):
-                for doc in result["source_documents"]:
-                    st.write(doc.metadata)
