@@ -51,7 +51,7 @@ if uploaded_file and st.button("Process PDF"):
             splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
             chunks = splitter.create_documents([text])
             st.session_state.vectorstore = FAISS.from_documents(chunks, embeddings)
-            st.success(f"PDF processed! Pages: {len(reader.pages)}, Chunks: {len(chunks)}. Ab sawal pooch sakte ho.")
+            st.success(f"PDF processed! Pages: {len(reader.pages)}, Chunks: {len(chunks)}. You can now ask questions.")
 
 st.divider()
 
@@ -59,11 +59,11 @@ question = st.text_input("Ask a question about the PDF", placeholder="e.g. What 
 
 if st.button("Ask Question"):
     if st.session_state.vectorstore is None:
-        st.warning("Pehle PDF upload aur process karo.")
+        st.warning("Please upload and process a PDF first.")
     elif not question.strip():
-        st.warning("Koi sawal likho.")
+        st.warning("Please enter a question.")
     else:
-        with st.spinner("Sochte hue..."):
+        with st.spinner("Thinking..."):
             retriever = st.session_state.vectorstore.as_retriever(search_kwargs={"k": 3})
             qa_chain = RetrievalQA.from_chain_type(
                 llm=llm,
