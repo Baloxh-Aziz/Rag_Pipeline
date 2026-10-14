@@ -65,7 +65,7 @@ Rag_Pipeline/
 ```
 
 ---
-
+---
 ## ⚠️ Limitations
 
 - Works with text-based PDFs only (scanned image PDFs need OCR).
