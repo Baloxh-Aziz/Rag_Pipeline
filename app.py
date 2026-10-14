@@ -55,7 +55,7 @@ if uploaded_file and st.button("Process PDF"):
 
 st.divider()
 
-question = st.text_input("Ask a question about the PDF", placeholder="e.g. What is the main topic of the document?")
+question = st.text_input("Ask a question about PDF", placeholder="e.g. What is the main topic of the document?")
 
 if st.button("Ask Question"):
     if st.session_state.vectorstore is None:
